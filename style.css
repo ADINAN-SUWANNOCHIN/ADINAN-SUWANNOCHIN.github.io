@@ -1,0 +1,968 @@
+/* --- Import Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables (ธีม GitHub) --- */
+:root {
+    --bg-color-dark: #0d1117;
+    --bg-color-dark-secondary: #161b22;
+    --border-color-dark: #30363d;
+    --text-color-primary-dark: #c9d1d9;
+    --text-color-secondary-dark: #8b949e;
+    --accent-color: #58a6ff;
+    --accent-color-hover: #79c0ff;
+    --font-primary: 'Sora', sans-serif;
+}
+
+/* --- Base Styles --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-family: var(--font-primary); scroll-behavior: smooth; }
+body { background-color: var(--bg-color-dark); }
+a { text-decoration: none; }
+li { list-style: none; }
+img, ion-icon, a, button, time, span { display: block; }
+button { font: inherit; background: none; border: none; text-align: left; cursor: pointer; }
+input, textarea { display: block; width: 100%; background: none; font: inherit; }
+::selection { background-color: var(--accent-color); color: var(--bg-color-dark); }
+h1, h2, h3, h4, h5, h6 { color: var(--text-color-primary-dark); font-weight: 600; }
+
+/* --- Main Layout --- */
+main {
+    margin: auto;
+    max-width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 15px;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: sticky;
+    top: 15px;
+    background: var(--bg-color-dark-secondary);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 20px;
+    padding: 25px;
+    width: 450px;
+    max-height: calc(100vh - 30px);
+    overflow-y: auto;
+    z-index: 1;
+}
+.sidebar-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.avatar-box {
+    border-radius: 5%;
+    overflow: hidden;
+    border: 2px solid var(--border-color-dark);
+}
+.avatar-box img { width: 300px; height: 350px; }
+
+.info-content {
+    text-align: center;
+    width: 100%; /* เพิ่มส่วนนี้เพื่อให้จัดกลางได้เต็มพื้นที่ */
+}
+
+.info-content .name { font-size: 1.4rem; }
+
+.info-content .title {
+    background: var(--bg-color-dark);
+    color: var(--text-color-primary-dark);
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 26px;
+}
+.typing-effect {
+    display: inline; /* for cursor to appear next to text */
+    border-right: 3px solid var(--accent-color);
+    animation: blink 0.7s steps(1) infinite;
+}
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.sidebar-info_more { 
+    padding-top: 25px; 
+    border-top: 1px solid var(--border-color-dark); 
+}
+.contacts-list { display: grid; gap: 16px; }
+.contact-item { display: flex; align-items: center; gap: 16px; }
+.contact-info { max-width: calc(100% - 46px); }
+.contact-title, time, address { color: var(--text-color-secondary-dark); font-size: 0.9rem; }
+.contact-link { color: var(--text-color-primary-dark); font-size: 0.9rem; transition: color 0.2s; }
+.contact-link:hover { color: var(--accent-color); }
+.icon-box {
+    width: 36px; height: 36px;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 8px; font-size: 1.2rem;
+    background: var(--bg-color-dark);
+    color: var(--accent-color);
+}
+.separator {
+    width: 100%;
+    height: 1px;
+    background: var(--border-color-dark);
+    margin: 25px 0;
+}
+
+/* --- Main Content --- */
+.main-content {
+    background: var(--bg-color-dark-secondary);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background: var(--bg-color-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    padding: 0 20px;
+    margin-bottom: 25px;
+}
+.navbar-list { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 20px; }
+.navbar-link {
+    color: var(--text-color-secondary-dark);
+    padding: 15px 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.navbar-link:hover { color: var(--accent-color); }
+.navbar-link.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* --- Article Page --- */
+article { display: none; }
+article.active { display: block; animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.article-title { font-size: 1.8rem; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color-dark); }
+.article-title-noborder { font-size: 1.8rem; padding-bottom: 10px; margin-bottom: 15px; border-bottom: 0px solid var(--border-color-dark); }
+
+/* About Section */
+.about-text p { color: var(--text-color-primary-dark); font-size: 1rem; margin-bottom: 1rem; line-height: 1.7; }
+.service-title { font-size: 1.5rem; margin-top: 30px; margin-bottom: 20px; }
+.service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.service-item { display: flex; align-items: flex-start; gap: 15px; background: var(--bg-color-dark); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color-dark); }
+.service-icon-box img { width: 40px; }
+.service-item-title {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  min-height: 40px;      /* 1. กำหนดความสูงขั้นต่ำ (ปรับค่าได้) */
+  display: flex;         /* 2. เปิดใช้งาน Flexbox */
+  align-items: center;   /* 3. จัดให้อยู่กึ่งกลางแนวตั้ง */
+}
+.service-item-text { color: var(--text-color-secondary-dark); font-size: 0.9rem; line-height: 1.5; }
+
+/* --- Resume Page (Updated Timeline Style) --- */
+
+.timeline {
+  margin-bottom: 30px;
+}
+
+.timeline .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.timeline-list {
+  position: relative; /* ทำให้เป็นแกนสำหรับเส้น Timeline */
+  padding-left: 45px; /* เพิ่มพื้นที่ว่างด้านซ้ายสำหรับเส้นและไอคอน */
+}
+
+/* สร้างเส้น Timeline แนวตั้ง */
+.timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 10px; /* ตำแหน่งของเส้น */
+  width: 1px;
+  height: calc(100% - 10px);
+  background: var(--border-color-dark);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+/* ทำให้แต่ละ item มีระยะห่างจากกัน */
+.timeline-item:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+/* สร้างจุดวงกลมบนเส้น Timeline */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -40px; /* จัดตำแหน่งจุดให้อยู่บนเส้น */
+  width: 9px;
+  height: 9px;
+  background: var(--bg-color-dark-secondary);
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+}
+
+/* สไตล์สำหรับกล่องไอคอนใหม่ */
+.timeline-icon-box {
+  background: var(--bg-color-dark-secondary);
+  padding: 4px; /* สร้างระยะห่างระหว่างไอคอนกับจุด */
+  margin-left: -53px; /* ดึงไอคอนมาทางซ้าย */
+  font-size: 2rem;
+  color: var(--text-color-secondary-dark);
+}
+
+.timeline-item-title {
+  margin-bottom: 0 !important;
+}
+
+.timeline-date {
+  margin-left: auto;
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  padding-left: 15px;
+  white-space: nowrap;
+}
+
+.timeline-text {
+  color: var(--text-color-secondary-dark);
+  font-size: 0.9rem;
+  padding-left: 10px;
+  line-height: 1.6;
+}
+
+/* Portfolio Section */
+.filter-list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+.filter-item button {
+    color: var(--text-color-secondary-dark);
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.filter-item button:hover { color: var(--text-color-primary-dark); background-color: var(--bg-color-dark); }
+.filter-item button.active { color: var(--accent-color); background-color: var(--bg-color-dark); }
+
+.project-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.project-item { display: none; }
+.project-item.active { display: block; animation: scaleUp 0.4s ease-out; }
+@keyframes scaleUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.project-img { position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid var(--border-color-dark); }
+.project-img img { width: 100%; height: auto; object-fit: cover; transition: transform 0.3s; }
+.project-item a:hover .project-img img { transform: scale(1.05); }
+.project-item-icon-box {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    background: var(--accent-color); color: #fff;
+    padding: 18px; border-radius: 12px; font-size: 1.5rem;
+    transition: all 0.3s;
+}
+.project-item a:hover .project-item-icon-box { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.project-title { font-size: 1.2rem; margin-bottom: 5px; color: var(--text-color-primary-dark); }
+.project-category { font-size: 0.9rem; color: var(--text-color-secondary-dark); }
+
+/* Contact Form */
+.mapbox { border-radius: 16px; overflow: hidden; margin-bottom: 30px; border: 1px solid var(--border-color-dark); }
+.mapbox iframe { width: 100%; height: 250px; border: none; }
+.form-input { 
+    color: var(--text-color-primary-dark);
+    font-size: 1rem;
+    padding: 13px 20px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    outline: none;
+    margin-bottom: 15px;
+}
+.form-input:focus { border-color: var(--accent-color); }
+textarea.form-input { min-height: 120px; resize: vertical; }
+.form-btn {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+.form-btn:hover { background: var(--accent-color-hover); }
+.form-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    main { flex-direction: column; padding: 15px; gap: 15px;}
+    .sidebar { position: static; width: 100%; max-height: max-content; margin-bottom: 15px; }
+}
+@media (max-width: 580px) {
+    .navbar-list { gap: 10px; }
+    .navbar-link { padding: 10px; }
+    .article-title { font-size: 1.5rem; }
+}
+
+/* --- Style for GPA Badge --- */
+
+/* สร้างกรอบสำหรับจัดเรียง Title กับ Badge */
+.timeline-item-header {
+    position: relative;
+    display: flex;
+    align-items: center; /* ทำให้ข้อความกับ Badge อยู่ในระดับเดียวกัน */
+    gap: 12px; /* ระยะห่างระหว่าง Title กับ Badge */
+    margin-bottom: 7px; /* คงระยะห่างด้านล่างเหมือนเดิม */
+}
+
+/* ปรับสไตล์ Title เดิมเล็กน้อย */
+.timeline-item-title {
+    margin-bottom: 0 !important; /* ยกเลิก margin เดิมเพื่อให้จัดเรียงใน flexbox ได้สวยงาม */
+}
+
+/* สไตล์ของ Badge */
+.gpa-badge {
+    background-color: var(--accent-color); /* ใช้สีไฮไลต์ของธีม */
+    color: #0d1117; /* สีตัวอักษรเข้มเพื่อให้ตัดกับพื้นหลัง */
+    padding: 2px 10px; /* ระยะห่างภายใน Badge (แนวตั้ง แนวนอน) */
+    border-radius: 2em; /* ทำให้ขอบมนเป็นแคปซูล */
+    font-size: 0.75rem; /* ขนาดตัวอักษรใน Badge */
+    font-weight: 700; /* ทำให้ตัวอักษรหนา */
+    line-height: 1.5; /* ความสูงของบรรทัด */
+    white-space: nowrap; /* ป้องกันไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+}
+
+/* --- Accordion Styles for Education --- */
+
+/* ปรับ Header ของ Timeline ให้มีที่สำหรับปุ่ม */
+.timeline-item-header {
+    position: relative; /* สำหรับให้ปุ่มยึดตำแหน่งได้ */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+/* ทำให้วันที่ยืดหยุ่น */
+.timeline-date {
+    margin-left: auto;
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    padding-left: 15px;
+    white-space: nowrap;
+}
+
+/* สไตล์ปุ่มเปิด/ปิด Accordion */
+.accordion-btn {
+    background: none;
+    border: none;
+    color: var(--text-color-secondary-dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px; /* ระยะห่างจากวันที่ */
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+/* หมุนปุ่มเมื่อ Accordion เปิด */
+.accordion-btn.active {
+    transform: rotate(180deg);
+}
+
+/* สไตล์ส่วนเนื้อหาที่จะซ่อน/แสดง */
+.timeline-details {
+    max-height: 0; /* ซ่อนเนื้อหาไว้ตอนแรก */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding-top 0.5s ease-out; /* ทำให้การเปิด/ปิดสมูท */
+    padding-top: 0;
+}
+
+/* สไตล์เมื่อ Accordion เปิด */
+.timeline-details.active {
+    padding-top: 15px; /* เพิ่มระยะห่างเมื่อเปิด */
+    max-height: 600px; /* กำหนดความสูงสูงสุดเผื่อไว้ (ปรับได้ตามต้องการ) */
+}
+
+/* --- Style for 2-column certificate gallery (Cover Mode) --- */
+
+.certificate-gallery {
+  display: flex;          /* เปิดใช้งาน Flexbox */
+  margin-top: 15px;
+  border-radius: 8px;     /* ทำให้ขอบของแกลเลอรีโดยรวมมน */
+  overflow: hidden;       /* ซ่อนส่วนของรูปที่ล้นออกมาจากขอบมน */
+  border: 1px solid var(--border-color-dark);
+}
+
+.certificate-gallery figure {
+  flex: 1;                /* ทำให้แต่ละรูปแบ่งพื้นที่คนละครึ่ง (50%) */
+  margin: 0;              /* ลบระยะห่างของ figure ออก */
+  line-height: 0;         /* แก้ปัญหาระยะห่างแปลกๆ ใต้ภาพ */
+}
+
+.certificate-gallery figure img {
+  width: 100%;              /* ทำให้รูปเต็มความกว้างของ figure (50% ของแกลเลอรี) */
+  height: 100%;             /* ทำให้รูปเต็มความสูงของ figure */
+  object-fit: cover;      /* คำสั่งสำคัญ: ทำให้รูปภาพเต็มพื้นที่และ Crop ส่วนเกินออก */
+  display: block;
+}
+
+/* --- Fix for ion-icon in Service Box --- */
+
+/* 1. ปรับปรุงกล่องไอคอนให้จัดไอคอนอยู่ตรงกลาง */
+.service-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;  /* กำหนดขนาดให้เท่ากับรูปภาพอื่น */
+  height: 40px; /* กำหนดขนาดให้เท่ากับรูปภาพอื่น */
+}
+
+/* 2. กำหนดขนาดและสีของ ion-icon โดยเฉพาะ */
+.service-icon-box ion-icon {
+  font-size: 40px; /* ขนาดของไอคอน */
+  color: var(--accent-color); /* ใช้สีไฮไลต์ของธีม */
+}
+
+/* --- Styles for New Skills Page --- */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 คอลัมน์สำหรับมือถือ */
+  gap: 20px;
+}
+
+/* ทำให้เป็น 2 คอลัมน์เมื่อจอใหญ่ขึ้น */
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skill-card {
+  background-color: var(--bg-color-dark); /* สีพื้นหลังของการ์ด */
+  border: 1px solid var(--border-color-dark);
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.skill-icon-box {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+}
+
+.skill-card-title {
+  font-size: 1.2rem;
+}
+
+.skill-card-body {
+  display: flex;
+  flex-wrap: wrap; /* ทำให้ป้าย Tag ขึ้นบรรทัดใหม่เมื่อไม่พอ */
+  gap: 12px;
+}
+
+.skill-tag {
+  background-color: var(--bg-color-dark-secondary);
+  color: var(--text-color-primary-dark);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* --- Styles for Core Competencies Section --- */
+
+.competencies-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 คอลัมน์สำหรับมือถือ */
+  gap: 30px;
+}
+
+/* ทำให้เป็น 2 คอลัมน์เมื่อจอใหญ่ขึ้น */
+@media (min-width: 768px) {
+  .competencies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skills-column-title {
+  font-size: 1.1rem;
+  color: var(--text-color-secondary-dark);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.skill-level-list {
+  display: grid;
+  gap: 15px;
+}
+
+.skill-level-item {
+  display: flex;
+  justify-content: space-between; /* จัดให้ชื่อทักษะและจุดอยู่คนละฝั่ง */
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color-primary-dark);
+}
+
+/* --- Styles for Skills Page (Logo & Language Redesign) --- */
+
+.section-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--text-color-primary-dark);
+}
+
+/* 2-column container using Flexbox */
+.tech-columns {
+    display: flex; /* เปลี่ยนเป็น Flexbox เพื่อให้ความสูงเท่ากัน */
+    gap: 0;
+}
+
+.tech-column {
+    flex: 1; /* ทำให้แต่ละคอลัมน์แบ่งพื้นที่เท่าๆ กัน */
+    min-width: 0; /* ป้องกันการล้นของ Flexbox */
+}
+
+/* เพิ่มเส้นแบ่งและระยะห่างให้คอลัมน์ที่สอง */
+.tech-column + .tech-column {
+    border-left: 1px solid var(--border-color-dark);
+    padding-left: 25px;
+    margin-left: 25px;
+}
+
+/* Style for each column title */
+.tech-column-title {
+    font-size: 1.3rem;
+    color: var(--text-color-secondary-dark);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 0px solid var(--border-color-dark);
+}
+
+/* Tech Logo Grid Styles */
+.logo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 15px;
+}
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 10px;
+  background-color: var(--bg-color-dark);
+  border-radius: 12px;
+  border: 1px solid var(--border-color-dark);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.logo-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+}
+
+.logo-item i {
+  font-size: 3rem; 
+}
+
+/* แก้ไขสี GitHub Icon ให้เป็นสีขาว */
+.logo-item i.devicon-github-original {
+    color: #fff;
+}
+
+.logo-item span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color-secondary-dark);
+  text-align: center;
+}
+
+/* Language Section Styles */
+.language-section {
+  margin-top: 30px;
+}
+
+.language-list {
+  display: grid;
+  gap: 15px;
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  padding: 15px 20px;
+  border-radius: 12px;
+}
+
+.lang-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color-primary-dark);
+}
+
+.lang-level {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary-dark);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .tech-columns {
+        flex-direction: column; /* เปลี่ยนเป็นเรียงแนวตั้ง */
+        gap: 30px;
+    }
+    .tech-column + .tech-column {
+        border-left: none; /* เอาเส้นแบ่งออกในจอมือถือ */
+        padding-left: 0;
+        margin-left: 0;
+        border-top: 1px solid var(--border-color-dark); /* เพิ่มเส้นแบ่งแนวนอนแทน */
+        padding-top: 30px;
+    }
+}
+
+/* --- Styles for Simple Skills List (Core Competencies) --- */
+
+.skills-list-simple {
+  list-style: none;
+  display: grid;
+  gap: 15px; /* ระยะห่างระหว่างแต่ละทักษะ */
+}
+
+.skill-item-simple {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color-primary-dark);
+}
+
+.skill-item-simple ion-icon {
+  font-size: 1.4rem; /* ขนาดของไอคอน Checkmark */
+  color: var(--accent-color); /* สีของไอคอน */
+  flex-shrink: 0; /* ป้องกันไม่ให้ไอคอนหดตัว */
+}
+
+/* --- Styles for Custom Office Icons --- */
+
+.custom-icon {
+  width: 48px;  /* ขนาด 3rem (เท่ากับไอคอนอื่น) */
+  height: 48px; /* ขนาด 3rem (เท่ากับไอคอนอื่น) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px; /* ทำให้ขอบมน */
+  font-size: 1.8rem;  /* ขนาดตัวอักษรข้างใน */
+  font-weight: 700;
+  color: #fff;
+}
+
+/* กำหนดสีเฉพาะสำหรับแต่ละโปรแกรม */
+.custom-icon.ms-word {
+  background-color: #2b579a; /* สีน้ำเงินของ Word */
+}
+
+.custom-icon.ms-ppt {
+  background-color: #d24726; /* สีส้มของ PowerPoint */
+}
+
+.custom-icon.ms-excel {
+  background-color: #217346; /* สีเขียวของ Excel */
+}
+
+/* --- Styles for Language Section with Image (Final Corrected Version) --- */
+
+.language-with-image {
+  margin-top: 30px;
+}
+
+.language-image-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* แบ่งเป็น 2 คอลัมน์เท่าๆ กัน */
+  gap: 25px;
+  align-items: stretch; /* คำสั่งสำคัญ: ทำให้ทั้ง 2 คอลัมน์สูงเท่ากันเสมอ */
+  background-color: var(--bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  border-radius: 12px;
+  padding: 25px;
+}
+
+/* ทำให้ลิสต์รายการภาษายืดเต็มความสูงและจัดกลาง */
+.language-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+  gap: 15px;
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color-dark);
+}
+
+
+.lang-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color-primary-dark);
+}
+
+.lang-level {
+  font-size: 0.9rem;
+  color: var(--accent-color-hover);
+}
+
+.language-image {
+  width: 100%;
+  height: 250px; /* กำหนดความสูงของกรอบรูป (ปรับได้) */
+  border-radius: 8px;
+  overflow: hidden;
+  align-self: center; /* จัดให้รูปอยู่กลางแนวตั้งของคอลัมน์ตัวเอง */
+}
+
+.language-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .language-image-container {
+    grid-template-columns: 1fr;
+  }
+  .language-image {
+    height: auto;
+    max-height: 300px;
+    margin-top: 20px;
+  }
+}
+
+/* --- Styles for Experience & Activity Modal (Corrected) --- */
+
+/* Project Card (remains the same) */
+.project-card-header {
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+}
+.project-card-header .project-item-icon-box ion-icon {
+    transform: rotate(0deg);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background-color: var(--bg-color-dark-secondary);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.modal-container.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--text-color-secondary-dark);
+    font-size: 1.8rem;
+    z-index: 25;
+}
+.modal-close-btn:hover {
+    color: var(--accent-color);
+}
+
+/* Slideshow Container */
+.modal-slideshow {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+    max-height: 400px;
+    background-color: var(--bg-color-dark);
+}
+.modal-slideshow::-webkit-scrollbar {
+    display: none;
+}
+
+/* Slideshow Image (The Fix) */
+.modal-slideshow img {
+    width: 100%;
+    height: auto; /* ปรับความสูงอัตโนมัติ */
+    flex-shrink: 0;
+    object-fit: contain; /* คำสั่งสำคัญ: ทำให้เห็นรูปเต็มใบ ไม่ล้นขอบ */
+    scroll-snap-align: start;
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 30px;
+}
+
+.modal-title {
+    margin-bottom: 25px;
+}
+.modal-description h4 {
+    color: var(--accent-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.modal-description p,
+.modal-description li {
+    color: var(--text-color-primary-dark);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+.modal-description ul {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+/* --- Activity Page Styles (with Slideshow) --- */
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.activity-item:not(:last-child) {
+    margin-bottom: 30px;
+}
+.activity-item.right {
+    flex-direction: row-reverse;
+}
+.activity-content { width: 55%; }
+.activity-title { font-size: 1.3rem; margin-bottom: 10px; }
+.activity-description { color: var(--text-color-secondary-dark); line-height: 1.6; margin-bottom: 10px; }
+.activity-date { display: block; font-size: 0.9rem; color: var(--accent-color); }
+
+/* Slideshow Container on Activity Page */
+.activity-img {
+    position: relative;
+    width: 45%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color-dark);
+}
+
+.activity-img .slideshow-wrapper {
+    display: flex;
+    overflow-x: hidden; /* Hide scrollbar, control with JS */
+    scroll-behavior: smooth;
+    height: 350px;
+}
+
+.activity-img .slideshow-wrapper img {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: cover; /* Use cover to fill the container */
+    display: block;
+}
+
+/* Arrow Buttons for Activity Page */
+.activity-img .slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(13, 17, 23, 0.7);
+    color: #fff;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    z-index: 5;
+}
+.activity-img .slide-btn:hover {
+    background-color: rgba(44, 49, 57, 0.9);
+}
+.activity-img .slide-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.activity-img .slide-btn.prev { left: 10px; }
+.activity-img .slide-btn.next { right: 10px; }
+
+/* Responsive for Activity Page */
+@media (max-width: 768px) {
+    .activity-item,
+    .activity-item.right {
+        flex-direction: column;
+    }
+    .activity-img, .activity-content {
+        width: 100%;
+    }
+}
