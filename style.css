@@ -1,6 +1,8 @@
 /* --- Import Font --- */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
 /* --- CSS Variables (ธีม GitHub) --- */
 :root {
     --bg-color-dark: #0d1117;
@@ -965,4 +967,88 @@ textarea.form-input { min-height: 120px; resize: vertical; }
     .activity-img, .activity-content {
         width: 100%;
     }
+}
+
+/* --- Styles for Certification Section --- */
+.certificate-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .certificate-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.certificate-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: var(--bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.cert-icon-box {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-top: 5px;
+}
+
+.cert-content {
+  flex: 1;
+}
+
+.cert-title {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.cert-issuer {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary-dark);
+}
+
+/* --- Styles for Clickable Certificate Card & Modal Image --- */
+
+/* เปลี่ยนให้ปุ่มมีหน้าตาเหมือนการ์ดเดิม */
+.certificate-item-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: var(--bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.certificate-item-btn:hover {
+  border-color: var(--accent-color);
+}
+
+/* ทำให้รูปภาพ Thumbnail ในปุ่มดูดีขึ้น */
+.certificate-item-btn .project-img {
+  margin-top: 10px;
+}
+
+/* จัดสไตล์รูปภาพขนาดใหญ่ใน Modal */
+.modal-img {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color-dark);
+}
+
+.modal-img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
